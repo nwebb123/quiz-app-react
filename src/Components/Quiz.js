@@ -5,23 +5,23 @@ import { JSQuestions } from "../Helpers/JSQuestionsBank";
 
 function Quiz() {
   //Destructuring gamestate and set gamestate function from Quiz context.
-  const { gameState, setGameState } = useContext(QuizContext);
-  const { score, setScore } = useContext(QuizContext);
+  const { setGameState } = useContext(QuizContext);
+  const { setScore } = useContext(QuizContext);
 
+  //Initial state for Quiz component;
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  
   const [optionChosen, setOptionChosen] = useState("");
-
   const [questionAnswered, setQuestionAnswered] = useState(false);
   const [isLastQuestion, setIsLastQuestion] = useState(false);
 
+
   const selectOption = option => {
+  
     setOptionChosen(option);
-    // console.log(JSQuestions[currentQuestion].answer)
-    // console.log(option)
-    console.log(optionChosen)
+    //console log below will not display the new value of optionChosen immediately after selection. That's why I had to pass in option (parameter) below instead of optionChosen (state)
+    //console.log(optionChosen)
     if (JSQuestions[currentQuestion].answer === option) {
-      //Need to change background color of option to green.
+      //Cool feature would be to change background color of correct option to light-green and incorrect option to light-red.
       console.log("Correct!");
       setScore(prevScore => (
         prevScore + 1

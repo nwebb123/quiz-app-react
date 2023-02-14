@@ -17,7 +17,7 @@ export const JSQuestions = [
     },
     // Question 3
     {
-        prompt: "Which operator returns true if the two compared values are not equal?",
+        prompt: "Which operator is used to express whether two compared values are NOT equal?",
         optionA: "<>",
         optionB: "!==",
         optionC: "==!",
@@ -81,10 +81,10 @@ export const JSQuestions = [
     // Question 10
     {
         prompt: "Which symbol is used to seperate Javascript statements?",
-        optionA: "Colon (:)",
-        optionB: "Period (.)",
-        optionC: "Semicolon (;)",
-        optionD: "Modulus (%)",
+        optionA: "Colon ( : )",
+        optionB: "Period ( . )",
+        optionC: "Semicolon ( ; )",
+        optionD: "Modulus ( % )",
         answer: "optionC"
     },
     
