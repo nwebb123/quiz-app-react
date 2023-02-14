@@ -6,6 +6,7 @@ import { QuizContext } from './Helpers/Contexts'
 
 
 function App() {
+  //Global states
 const [gameState, setGameState] = useState("menu")
 const [score, setScore] = useState(0);
 

@@ -1,7 +1,7 @@
 import { React, useState, useContext } from "react";
 import { QuizContext } from "../Helpers/Contexts";
 import { JSQuestions } from "../Helpers/JSQuestionsBank";
-import {ResultsContext} from "../Helpers/Contexts"
+
 
 function Quiz() {
   //Destructuring gamestate and set gamestate function from Quiz context.
@@ -9,23 +9,28 @@ function Quiz() {
   const { score, setScore } = useContext(QuizContext);
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  
   const [optionChosen, setOptionChosen] = useState("");
 
   const [questionAnswered, setQuestionAnswered] = useState(false);
-
   const [isLastQuestion, setIsLastQuestion] = useState(false);
 
-  const selectOption = (option) => {
+  const selectOption = option => {
     setOptionChosen(option);
-
-    if (JSQuestions[currentQuestion].answer === optionChosen) {
+    // console.log(JSQuestions[currentQuestion].answer)
+    // console.log(option)
+    console.log(optionChosen)
+    if (JSQuestions[currentQuestion].answer === option) {
       //Need to change background color of option to green.
       console.log("Correct!");
+      setScore(prevScore => (
+        prevScore + 1
+        ))
     } else {
       //Change background color to red for all options that don't meet first condition.
       console.log("Incorrect");
     }
-
+    //console.log(score)
     setQuestionAnswered(true);
 
     if (currentQuestion === JSQuestions.length - 1) {
@@ -33,7 +38,6 @@ function Quiz() {
     }
   };
 
-  console.log(currentQuestion);
   return (
     <div className="Quiz m-3 flex-col">
       <div className="py-10 mx-auto max-w-3xl justify-center bg-purple-500 rounded-xl">
