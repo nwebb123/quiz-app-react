@@ -7,6 +7,9 @@ function MainMenu() {
 
   return (
     <>
+      <div className="text-white text-xl max-w-lg p-2 m-2 mx-auto text-center">
+        Purpose of this application is to act as a personal study tool for learning new things. Current version has 20 questions about Javascript. 
+      </div>
       <div className="m-3">
         <div className="py-10 mx-auto max-w-3xl flex justify-center bg-purple-500 rounded-xl">
           <button
