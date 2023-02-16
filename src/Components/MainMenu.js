@@ -8,7 +8,7 @@ function MainMenu() {
   return (
     <>
       <div className="m-3">
-        <div className="py-5 mx-auto max-w-3xl flex justify-center bg-purple-500 rounded-xl">
+        <div className="py-10 mx-auto max-w-3xl flex justify-center bg-purple-500 rounded-xl">
           <button
             onClick={() => {
               setGameState("quiz");

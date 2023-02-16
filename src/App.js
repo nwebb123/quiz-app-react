@@ -18,7 +18,7 @@ function App() {
       <Navbar />
       <div className=" flex justify-center flex-col">
         <h1 className="p-2 m-2 flex justify-center text-4xl text-white">
-          Quiz App
+          Quick Quiz
         </h1>
         {/* Components that need use to context need to be wrapped in the ContextProvider and provider needs a value of the states from Context. */}
         <QuizContext.Provider
