@@ -4,7 +4,7 @@ import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 
 function Navbar() {
   return (
-    <div className="py-3 text-white">
+    <div className="py-4 text-white">
         <ul className="px-4 flex justify-end space-x-5 text-3xl">
         <a
             href="https://www.linkedin.com/in/nicholas-webb-dev/"
