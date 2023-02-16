@@ -1,16 +1,17 @@
 import {React, useContext} from 'react'
-import { QuizContext } from '../Helpers/Contexts'
+import { QuizContext } from '../Helpers/Contexts' 
 
 function Results() {
 
   const { score, setScore } = useContext(QuizContext);
   const { setGameState } = useContext(QuizContext);
 
+  //Need to abstract this into utils.js
   const resetQuiz = () => {
     setScore(0);
     setGameState("menu")
   }
-
+  
   return (
     <div className="Quiz m-3 flex-col">
     <div className="py-10 mx-auto max-w-3xl justify-center bg-purple-500 rounded-xl">

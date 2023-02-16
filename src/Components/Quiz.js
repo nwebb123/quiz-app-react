@@ -15,20 +15,6 @@ function Quiz() {
 
   const selectOption = (option) => {
     setOptionChosen(option);
-    //console log below will not display the new value of optionChosen immediately after selection. That's why I had to pass in option (parameter) below instead of optionChosen (state)
-    //console.log(optionChosen)
-
-    // if (JSQuestions[currentQuestion].answer === option) {
-    //   //Cool feature would be to change background color of correct option to light-green and incorrect option to light-red.
-    //   console.log("Correct!");
-    //   setScore(prevScore => (
-    //     prevScore + 1
-    //     ))
-    // } else {
-    //   //Change background color to red for all options that don't meet first condition.
-    //   console.log("Incorrect");
-    // }
-    //console.log(score)
     setQuestionAnswered(true);
 
     if (currentQuestion === JSQuestions.length - 1) {
@@ -47,77 +33,93 @@ function Quiz() {
     }
   };
 
+  const resetQuiz = () => {
+    setScore(0);
+    setGameState("menu");
+  };
+
   return (
-    <div className="Quiz m-3 flex-col">
-      <div className="py-10 mx-auto max-w-3xl justify-center bg-purple-500 rounded-xl">
-        <h1 className="text-white text-xl text-center">
-          {JSQuestions[currentQuestion].question}
-        </h1>
-        <br />
-        <div className="options p-3 flex flex-col text-white text-start">
-          <button
-            className="bg-purple-400 m-2 p-2 rounded-md"
-            onClick={() => selectOption("optionA")}
-          >
-            A) {JSQuestions[currentQuestion].optionA}
-          </button>
-          <button
-            className="bg-purple-400 m-2 p-2 rounded-md"
-            onClick={() => selectOption("optionB")}
-          >
-            B) {JSQuestions[currentQuestion].optionB}
-          </button>
+    <>
+      <button
+        onClick={() => {
+          resetQuiz();
+        }}
+        className="p-1 m-1 mx-auto bg-red-500 border border-black text-white rounded-sm"
+      >
+        Main Menu
+      </button>
 
-          {/* If true/false, do not display */}
-          {JSQuestions[currentQuestion].isMultChoice && (
-            <>
-              <button
-                className="bg-purple-400 m-2 p-2 rounded-md"
-                onClick={() => selectOption("optionC")}
-              >
-                C) {JSQuestions[currentQuestion].optionC}
-              </button>
-              <button
-                className="bg-purple-400 m-2 p-2 rounded-md"
-                onClick={() => selectOption("optionD")}
-              >
-                D) {JSQuestions[currentQuestion].optionD}
-              </button>
-            </>
-          )}
-
-          {/* See Reults button render */}
-          {questionAnswered && isLastQuestion && (
+      <div className="Quiz m-3 flex-col">
+        <div className="py-10 mx-auto max-w-3xl justify-center bg-purple-500 rounded-xl">
+          <h1 className="text-white text-xl text-center">
+            {JSQuestions[currentQuestion].question}
+          </h1>
+          <br />
+          <div className="options p-3 flex flex-col text-white text-start">
             <button
-              onClick={() => {
-                submitOption();
-                setGameState("results");
-              }}
-              className="p-3 mt-6 mx-auto  bg-purple-700 text-white rounded-sm"
+              className="bg-purple-400 m-2 p-2 rounded-md"
+              onClick={() => selectOption("optionA")}
             >
-              See Results
+              A) {JSQuestions[currentQuestion].optionA}
             </button>
-          )}
-
-          {/* Next Question button render */}
-          {questionAnswered && !isLastQuestion && (
             <button
-              onClick={() => {
-                submitOption();
-                //Increment state of currentQuestion along with resetting whether or not the question is answered (from true to false)
-                setCurrentQuestion((prevCurrentQuestion) => {
-                  setQuestionAnswered(false);
-                  return prevCurrentQuestion + 1;
-                });
-              }}
-              className="p-3 mt-6 mx-auto  bg-purple-700 text-white rounded-sm"
+              className="bg-purple-400 m-2 p-2 rounded-md"
+              onClick={() => selectOption("optionB")}
             >
-              Next Question
+              B) {JSQuestions[currentQuestion].optionB}
             </button>
-          )}
+
+            {/* If question is not a mult. choice question, do not display options C & D */}
+            {JSQuestions[currentQuestion].isMultChoice && (
+              <>
+                <button
+                  className="bg-purple-400 m-2 p-2 rounded-md"
+                  onClick={() => selectOption("optionC")}
+                >
+                  C) {JSQuestions[currentQuestion].optionC}
+                </button>
+                <button
+                  className="bg-purple-400 m-2 p-2 rounded-md"
+                  onClick={() => selectOption("optionD")}
+                >
+                  D) {JSQuestions[currentQuestion].optionD}
+                </button>
+              </>
+            )}
+
+            {/* See Reults button render */}
+            {questionAnswered && isLastQuestion && (
+              <button
+                onClick={() => {
+                  submitOption();
+                  setGameState("results");
+                }}
+                className="p-3 mt-6 mx-auto  bg-purple-700 text-white rounded-sm"
+              >
+                See Results
+              </button>
+            )}
+
+            {/* Next Question button render */}
+            {questionAnswered && !isLastQuestion && (
+              <button
+                onClick={() => {
+                  submitOption();
+                  //Increment state of currentQuestion along with resetting whether or not the question is answered (from true to false)
+                  setCurrentQuestion((prevCurrentQuestion) => {
+                    setQuestionAnswered(false);
+                    return prevCurrentQuestion + 1;
+                  });
+                }}
+                className="p-3 mt-6 mx-auto  bg-purple-700 text-white rounded-sm"
+              >
+                Next Question
+              </button>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

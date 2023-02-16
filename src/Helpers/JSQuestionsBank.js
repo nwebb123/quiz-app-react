@@ -13,7 +13,7 @@ export const JSQuestions = [
     {
         question: "True of false: Javascript is a multi-threaded language.",
         optionA: "True",
-        optionB: "False",       
+        optionB: "False",
         answer: "optionB",
         isMultChoice: false,
     },
@@ -39,7 +39,7 @@ export const JSQuestions = [
     },
     // Question 5
     {
-        question: "What of the following is NOT a supported data type in Javascript?",
+        question: "Which of the following is NOT a supported data type in Javascript?",
         optionA: "Boolean",
         optionB: "Number",
         optionC: "Algoritm",
@@ -97,7 +97,6 @@ export const JSQuestions = [
         answer: "optionC",
         isMultChoice: true
     },
-    
+
 
 ]
-

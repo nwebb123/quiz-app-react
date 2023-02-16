@@ -4,14 +4,14 @@ import Quiz from "./Components/Quiz";
 import Results from "./Components/Results";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
+
+//Why does this import need to be wrapped in curly braces?
 import { QuizContext } from "./Helpers/Contexts";
 
 function App() {
-  //Global states
+  //Global state living
   const [gameState, setGameState] = useState("menu");
   const [score, setScore] = useState(0);
-
-  // setGameState()
 
   return (
     <div className="bg-gradient-to-b from-purple-700 to-purple-900 min-h-screen">
