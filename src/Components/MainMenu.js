@@ -8,7 +8,7 @@ function MainMenu() {
   return (
     <>
       <div className="text-white text-xl max-w-lg p-2 m-2 mx-auto text-center">
-        Purpose of this application is to have a study tool available while on-the-go. The quiz currenly cotains questions about Javascript but I plan to include other languages/topics over time. Good luck!
+        Purpose of this application is to have a study tool available while on-the-go. The quiz currenly contains questions about Javascript but I plan to include other languages/topics over time. Good luck!
       </div>
       <div className="m-3">
         <div className="py-10 mx-auto max-w-3xl flex justify-center bg-purple-500 rounded-xl">
