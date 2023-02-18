@@ -1,13 +1,13 @@
 import { React, useState, useContext } from "react";
 import { QuizContext } from "../Helpers/Contexts";
-import { JSQuestions } from "../Helpers/JSQuestionsBank";
-import { ReactQuestions } from "../Helpers/ReactQuestionsBank";
+// import { JSQuestions } from "../Helpers/JSQuestionsBank";
+// import { ReactQuestions } from "../Helpers/ReactQuestionsBank";
 
 function Quiz() {
   //Destructuring gamestate and set gamestate function from Quiz context.
   const { setGameState } = useContext(QuizContext);
   const { setScore } = useContext(QuizContext);
-  const { currentQuestionBank, setCurrentQuestionBank } = useContext(QuizContext);
+  const { questionsBank, setQuestionsBank } = useContext(QuizContext);
 
 
   //Initial state for Quiz component;
@@ -16,27 +16,18 @@ function Quiz() {
   const [questionAnswered, setQuestionAnswered] = useState(false);
   const [isLastQuestion, setIsLastQuestion] = useState(false);
 
-//  switch (currentQuestionBank) {
-//   case value:
-    
-//     break;
- 
-//   default:
-//     break;
-//  }
-
 
   const selectOption = (option) => {
     setOptionChosen(option);
     setQuestionAnswered(true);
 
-    if (currentQuestion === JSQuestions.length - 1) {
+    if (currentQuestion === questionsBank.length - 1) {
       setIsLastQuestion(true);
     }
   };
 
   const submitOption = () => {
-    if (JSQuestions[currentQuestion].answer === optionChosen) {
+    if (questionsBank[currentQuestion].answer === optionChosen) {
       //Cool feature would be to change background color of correct option to light-green and incorrect option to light-red.
       console.log("Correct!");
       setScore((prevScore) => prevScore + 1);
@@ -49,7 +40,7 @@ function Quiz() {
   const resetQuiz = () => {
     setScore(0);
     setGameState("menu");
-    setQuestionBank("");
+    setQuestionsBank([]);
   };
 
   return (
@@ -66,7 +57,7 @@ function Quiz() {
       <div className="Quiz m-3 flex-col">
         <div className="py-10 mx-auto max-w-3xl justify-center bg-purple-500 rounded-xl">
           <h1 className="text-white text-xl text-center">
-            {JSQuestions[currentQuestion].question}
+            {questionsBank[currentQuestion].question}
           </h1>
           <br />
           <div className="options p-3 flex flex-col text-white text-start">
@@ -74,29 +65,29 @@ function Quiz() {
               className="bg-purple-400 m-2 p-2 rounded-md"
               onClick={() => selectOption("optionA")}
             >
-              A) {JSQuestions[currentQuestion].optionA}
+              A) {questionsBank[currentQuestion].optionA}
             </button>
             <button
               className="bg-purple-400 m-2 p-2 rounded-md"
               onClick={() => selectOption("optionB")}
             >
-              B) {JSQuestions[currentQuestion].optionB}
+              B) {questionsBank[currentQuestion].optionB}
             </button>
 
             {/* If question is not a mult. choice question, do not display options C & D */}
-            {JSQuestions[currentQuestion].isMultChoice && (
+            {questionsBank[currentQuestion].isMultChoice && (
               <>
                 <button
                   className="bg-purple-400 m-2 p-2 rounded-md"
                   onClick={() => selectOption("optionC")}
                 >
-                  C) {JSQuestions[currentQuestion].optionC}
+                  C) {questionsBank[currentQuestion].optionC}
                 </button>
                 <button
                   className="bg-purple-400 m-2 p-2 rounded-md"
                   onClick={() => selectOption("optionD")}
                 >
-                  D) {JSQuestions[currentQuestion].optionD}
+                  D) {questionsBank[currentQuestion].optionD}
                 </button>
               </>
             )}

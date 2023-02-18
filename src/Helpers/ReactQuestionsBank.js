@@ -1,4 +1,4 @@
-export const JSQuestions = [
+export const ReactQuestions = [
     // Question 1
     {
         question: "How does React increase performance in applications?",

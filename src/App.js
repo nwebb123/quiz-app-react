@@ -12,7 +12,7 @@ function App() {
   //Global state living
   const [gameState, setGameState] = useState("menu");
   const [score, setScore] = useState(0);
-  const [questionBank, setQuestionBank] = useState("");
+  const [questionsBank, setQuestionsBank] = useState([]);
 
   return (
     <div className="bg-gradient-to-b from-purple-700 to-purple-900 min-h-screen">
@@ -23,7 +23,7 @@ function App() {
         </h1>
         {/* Components that need use to context need to be wrapped in the ContextProvider and provider needs a value of the states from Context. */}
         <QuizContext.Provider
-          value={{ gameState, setGameState, score, setScore, questionBank, setQuestionBank }}
+          value={{ gameState, setGameState, score, setScore, questionsBank, setQuestionsBank }}
         >
           {/* Example of short-circuiting to dynamically rendering display based on the state of the game. */}
           {gameState === "menu" && <MainMenu />}
