@@ -1,17 +1,30 @@
 import { React, useState, useContext } from "react";
 import { QuizContext } from "../Helpers/Contexts";
 import { JSQuestions } from "../Helpers/JSQuestionsBank";
+import { ReactQuestions } from "../Helpers/ReactQuestionsBank";
 
 function Quiz() {
   //Destructuring gamestate and set gamestate function from Quiz context.
   const { setGameState } = useContext(QuizContext);
   const { setScore } = useContext(QuizContext);
+  const { currentQuestionBank, setCurrentQuestionBank } = useContext(QuizContext);
+
 
   //Initial state for Quiz component;
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [optionChosen, setOptionChosen] = useState("");
   const [questionAnswered, setQuestionAnswered] = useState(false);
   const [isLastQuestion, setIsLastQuestion] = useState(false);
+
+//  switch (currentQuestionBank) {
+//   case value:
+    
+//     break;
+ 
+//   default:
+//     break;
+//  }
+
 
   const selectOption = (option) => {
     setOptionChosen(option);
@@ -36,6 +49,7 @@ function Quiz() {
   const resetQuiz = () => {
     setScore(0);
     setGameState("menu");
+    setQuestionBank("");
   };
 
   return (
