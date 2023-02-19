@@ -9,13 +9,11 @@ function Quiz() {
   const { setScore } = useContext(QuizContext);
   const { questionsBank, setQuestionsBank } = useContext(QuizContext);
 
-
   //Initial state for Quiz component;
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [optionChosen, setOptionChosen] = useState("");
   const [questionAnswered, setQuestionAnswered] = useState(false);
   const [isLastQuestion, setIsLastQuestion] = useState(false);
-
 
   const selectOption = (option) => {
     setOptionChosen(option);
@@ -61,14 +59,16 @@ function Quiz() {
           </h1>
           <br />
           <div className="options p-3 flex flex-col text-white text-start">
+            {/* Option A */}
             <button
-              className="bg-purple-400 m-2 p-2 rounded-md"
+              className="bg-purple-400 hover:bg-purple-600 active:bg-purple-700 focus:bg-purple-600 focus:ring focus:ring-purple-300 m-2 p-2 rounded-md"
               onClick={() => selectOption("optionA")}
             >
               A) {questionsBank[currentQuestion].optionA}
             </button>
+            {/* Option B */}
             <button
-              className="bg-purple-400 m-2 p-2 rounded-md"
+              className="bg-purple-400 hover:bg-purple-600 active:bg-purple-700 focus:bg-purple-600 focus:ring focus:ring-purple-300 m-2 p-2 rounded-md"
               onClick={() => selectOption("optionB")}
             >
               B) {questionsBank[currentQuestion].optionB}
@@ -77,14 +77,16 @@ function Quiz() {
             {/* If question is not a mult. choice question, do not display options C & D */}
             {questionsBank[currentQuestion].isMultChoice && (
               <>
+              {/* Option C */}
                 <button
-                  className="bg-purple-400 m-2 p-2 rounded-md"
+                  className="bg-purple-400 hover:bg-purple-600 active:bg-purple-700 focus:bg-purple-600 focus:ring focus:ring-purple-300 m-2 p-2 rounded-md"
                   onClick={() => selectOption("optionC")}
                 >
                   C) {questionsBank[currentQuestion].optionC}
                 </button>
+                {/* Option D */}
                 <button
-                  className="bg-purple-400 m-2 p-2 rounded-md"
+                  className="bg-purple-400 hover:bg-purple-600 active:bg-purple-700 focus:bg-purple-600 focus:ring focus:ring-purple-300 m-2 p-2 rounded-md"
                   onClick={() => selectOption("optionD")}
                 >
                   D) {questionsBank[currentQuestion].optionD}
@@ -116,7 +118,7 @@ function Quiz() {
                     return prevCurrentQuestion + 1;
                   });
                 }}
-                className="p-3 mt-6 mx-auto  bg-purple-700 text-white rounded-sm"
+                className="p-3 mt-6 mx-auto text-white rounded-sm bg-purple-700  hover:bg-purple-600 active:bg-purple-800 focus:bg-purple-800 focus:ring focus:ring-purple-300 m-2"
               >
                 Next Question
               </button>
