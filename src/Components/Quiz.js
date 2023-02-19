@@ -29,11 +29,11 @@ function Quiz() {
   const submitOption = () => {
     if (questionsBank[currentQuestion].answer === optionChosen) {
       //Cool feature would be to change background color of correct option to light-green and incorrect option to light-red.
-      console.log("Correct!");
+      console.log(`Question ${currentQuestion + 1}: Correct`);
       setScore((prevScore) => prevScore + 1);
     } else {
       //Change background color to red for all options that don't meet first condition.
-      console.log("Incorrect");
+      console.log(`Question ${currentQuestion + 1}: Incorrect`);
     }
   };
 
