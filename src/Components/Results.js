@@ -1,6 +1,6 @@
 import {React, useContext} from 'react'
 import { QuizContext } from '../Helpers/Contexts' 
-// import { JSQuestions } from "../Helpers/JSQuestionsBank";
+
 
 function Results() {
 

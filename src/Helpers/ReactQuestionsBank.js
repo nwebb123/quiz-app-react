@@ -9,5 +9,25 @@ export const ReactQuestions = [
         answer: "optionC",
         isMultChoice: true,
     },
+    // Question 2
+    {
+        question: "Which of the following is used to pass data to a component from outside in React?",
+        optionA: "Props",
+        optionB: "setState",
+        optionC: "By updating the virtual DOM",
+        optionD: "PropTypes",
+        answer: "optionA",
+        isMultChoice: true,
+    },
+    // Question 2
+    {
+        question: "Which of the following is used to pass data to a component from outside in React?",
+        optionA: "Props",
+        optionB: "setState",
+        optionC: "By updating the virtual DOM",
+        optionD: "PropTypes",
+        answer: "optionA",
+        isMultChoice: true,
+    },
 
 ]
