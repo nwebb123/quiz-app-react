@@ -11,7 +11,7 @@ export const ReactQuestions = [
     },
     // Question 2
     {
-        question: "Which of the following is used to pass data to a component from outside in React?",
+        question: "Which of the following is used in React to pass data down to a component?",
         optionA: "props",
         optionB: "passProp",
         optionC: "ES6",
@@ -21,7 +21,7 @@ export const ReactQuestions = [
     },
     // Question 3
     {
-        question: "React utilizes ___-way data binding to keep everything modular and fast",
+        question: "React utilizes ___-way data binding to keep everything modular and fast.",
         optionA: "two",
         optionB: "one",
         optionC: "four",
@@ -52,16 +52,16 @@ export const ReactQuestions = [
     // Question 6
     {
         question: "_____ are the building blocks of any React application.",
-        optionA: "imports",
-        optionB: "states",
-        optionC: "components",
-        optionD: "buttons",
+        optionA: "Imports",
+        optionB: "States",
+        optionC: "Components",
+        optionD: "Buttons",
         answer: "optionC",
         isMultChoice: true,
     },
     // Question 7
     {
-        question: "True or false: React JS creates a virtual DOM in memory.",
+        question: "True or false: React creates a virtual DOM in memory.",
         optionA: "True",
         optionB: "False",
         answer: "optionA",
@@ -79,7 +79,7 @@ export const ReactQuestions = [
     },
      // Question 9
      {
-        question: " Which of the following method refers to the parent class in React.js?",
+        question: " Which of the following methods refer to the parent class in React?",
         optionA: "this()",
         optionB: "self()",
         optionC: "inherits()",
@@ -89,7 +89,7 @@ export const ReactQuestions = [
     },
      // Question 10
      {
-        question: "Which of the following best defines the \"key\" prop?",
+        question: "Which of the following best defines the \"key\" property?",
         optionA: "used to gain access to styles in JSX",
         optionB: "A way for React to identify a newly added item in a list",
         optionC: "an HTML attribute",

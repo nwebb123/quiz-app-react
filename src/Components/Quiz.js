@@ -47,7 +47,7 @@ function Quiz() {
         onClick={() => {
           resetQuiz();
         }}
-        className="p-1 m-1 mx-auto bg-red-500 border border-black text-white rounded-sm"
+        className="p-1 m-1 mx-auto bg-red-500 hover:bg-red-600 active:bg-red-800 focus:bg-red-800 focus:ring focus:ring-red-300 border border-black text-white rounded-sm"
       >
         Main Menu
       </button>
@@ -101,7 +101,7 @@ function Quiz() {
                   submitOption();
                   setGameState("results");
                 }}
-                className="p-3 mt-6 mx-auto  bg-purple-700 text-white rounded-sm"
+                className="p-3 mt-6 mx-auto  bg-purple-700 hover:bg-purple-600 active:bg-purple-800 focus:bg-purple-800 focus:ring focus:ring-purple-300 text-white rounded-sm"
               >
                 See Results
               </button>
