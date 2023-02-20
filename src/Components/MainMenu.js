@@ -6,7 +6,7 @@ import { ReactQuestions } from "../Helpers/ReactQuestionsBank";
 function MainMenu() {
   //Destructuring gamestate and set gamestate from state in Context. This is shared across multiple components.
   const { setGameState } = useContext(QuizContext);
-  const {questionsBank, setQuestionsBank} = useContext(QuizContext);
+  const {setQuestionsBank} = useContext(QuizContext);
 
   return (
     <>
