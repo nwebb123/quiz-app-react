@@ -1,11 +1,13 @@
 import { React, useState, useContext } from "react";
 import { QuizContext } from "../Helpers/Contexts";
-import { JSQuestions } from "../Helpers/JSQuestionsBank";
+// import { JSQuestions } from "../Helpers/JSQuestionsBank";
+// import { ReactQuestions } from "../Helpers/ReactQuestionsBank";
 
 function Quiz() {
   //Destructuring gamestate and set gamestate function from Quiz context.
   const { setGameState } = useContext(QuizContext);
   const { setScore } = useContext(QuizContext);
+  const { questionsBank, setQuestionsBank } = useContext(QuizContext);
 
   //Initial state for Quiz component;
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -17,25 +19,26 @@ function Quiz() {
     setOptionChosen(option);
     setQuestionAnswered(true);
 
-    if (currentQuestion === JSQuestions.length - 1) {
+    if (currentQuestion === questionsBank.length - 1) {
       setIsLastQuestion(true);
     }
   };
 
   const submitOption = () => {
-    if (JSQuestions[currentQuestion].answer === optionChosen) {
+    if (questionsBank[currentQuestion].answer === optionChosen) {
       //Cool feature would be to change background color of correct option to light-green and incorrect option to light-red.
-      console.log("Correct!");
+      console.log(`Question ${currentQuestion + 1}: Correct`);
       setScore((prevScore) => prevScore + 1);
     } else {
       //Change background color to red for all options that don't meet first condition.
-      console.log("Incorrect");
+      console.log(`Question ${currentQuestion + 1}: Incorrect`);
     }
   };
 
   const resetQuiz = () => {
     setScore(0);
     setGameState("menu");
+    setQuestionsBank([]);
   };
 
   return (
@@ -44,7 +47,7 @@ function Quiz() {
         onClick={() => {
           resetQuiz();
         }}
-        className="p-1 m-1 mx-auto bg-red-500 border border-black text-white rounded-sm"
+        className="p-1 m-1 mx-auto bg-red-500 hover:bg-red-600 active:bg-red-800 focus:bg-red-800 focus:ring focus:ring-red-300 border border-black text-white rounded-sm"
       >
         Main Menu
       </button>
@@ -52,37 +55,41 @@ function Quiz() {
       <div className="Quiz m-3 flex-col">
         <div className="py-10 mx-auto max-w-3xl justify-center bg-purple-500 rounded-xl">
           <h1 className="text-white text-xl text-center">
-            {JSQuestions[currentQuestion].question}
+            {questionsBank[currentQuestion].question}
           </h1>
           <br />
           <div className="options p-3 flex flex-col text-white text-start">
+            {/* Option A */}
             <button
-              className="bg-purple-400 m-2 p-2 rounded-md"
+              className="bg-purple-400 hover:bg-purple-600 active:bg-purple-700 focus:bg-purple-600 focus:ring focus:ring-purple-300 m-2 p-2 rounded-md"
               onClick={() => selectOption("optionA")}
             >
-              A) {JSQuestions[currentQuestion].optionA}
+              A) {questionsBank[currentQuestion].optionA}
             </button>
+            {/* Option B */}
             <button
-              className="bg-purple-400 m-2 p-2 rounded-md"
+              className="bg-purple-400 hover:bg-purple-600 active:bg-purple-700 focus:bg-purple-600 focus:ring focus:ring-purple-300 m-2 p-2 rounded-md"
               onClick={() => selectOption("optionB")}
             >
-              B) {JSQuestions[currentQuestion].optionB}
+              B) {questionsBank[currentQuestion].optionB}
             </button>
 
             {/* If question is not a mult. choice question, do not display options C & D */}
-            {JSQuestions[currentQuestion].isMultChoice && (
+            {questionsBank[currentQuestion].isMultChoice && (
               <>
+              {/* Option C */}
                 <button
-                  className="bg-purple-400 m-2 p-2 rounded-md"
+                  className="bg-purple-400 hover:bg-purple-600 active:bg-purple-700 focus:bg-purple-600 focus:ring focus:ring-purple-300 m-2 p-2 rounded-md"
                   onClick={() => selectOption("optionC")}
                 >
-                  C) {JSQuestions[currentQuestion].optionC}
+                  C) {questionsBank[currentQuestion].optionC}
                 </button>
+                {/* Option D */}
                 <button
-                  className="bg-purple-400 m-2 p-2 rounded-md"
+                  className="bg-purple-400 hover:bg-purple-600 active:bg-purple-700 focus:bg-purple-600 focus:ring focus:ring-purple-300 m-2 p-2 rounded-md"
                   onClick={() => selectOption("optionD")}
                 >
-                  D) {JSQuestions[currentQuestion].optionD}
+                  D) {questionsBank[currentQuestion].optionD}
                 </button>
               </>
             )}
@@ -94,7 +101,7 @@ function Quiz() {
                   submitOption();
                   setGameState("results");
                 }}
-                className="p-3 mt-6 mx-auto  bg-purple-700 text-white rounded-sm"
+                className="p-3 mt-6 mx-auto  bg-purple-700 hover:bg-purple-600 active:bg-purple-800 focus:bg-purple-800 focus:ring focus:ring-purple-300 text-white rounded-sm"
               >
                 See Results
               </button>
@@ -111,7 +118,7 @@ function Quiz() {
                     return prevCurrentQuestion + 1;
                   });
                 }}
-                className="p-3 mt-6 mx-auto  bg-purple-700 text-white rounded-sm"
+                className="p-3 mt-6 mx-auto text-white rounded-sm bg-purple-700  hover:bg-purple-600 active:bg-purple-800 focus:bg-purple-800 focus:ring focus:ring-purple-300 m-2"
               >
                 Next Question
               </button>

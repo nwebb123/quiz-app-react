@@ -1,16 +1,18 @@
 import {React, useContext} from 'react'
 import { QuizContext } from '../Helpers/Contexts' 
-import { JSQuestions } from "../Helpers/JSQuestionsBank";
+
 
 function Results() {
 
   const { score, setScore } = useContext(QuizContext);
   const { setGameState } = useContext(QuizContext);
+  const { questionsBank, setQuestionsBank } = useContext(QuizContext);
 
   //Need to abstract this into utils.js
   const resetQuiz = () => {
     setScore(0);
     setGameState("menu")
+    setQuestionsBank([])
   }
   
   return (
@@ -20,8 +22,8 @@ function Results() {
        Results:
       </h1>
       <br />
-      <h3 className="text-white text-2xl text-center">{score} / {JSQuestions.length}</h3>
-      <button onClick={resetQuiz} className="flex mx-auto p-2 m-1 mt-6 bg-purple-700 text-white rounded-sm">Main Menu</button>
+      <h3 className="text-white text-2xl text-center">{score} / {questionsBank.length}</h3>
+      <button onClick={resetQuiz} className="flex mx-auto p-2 m-1 mt-6 bg-purple-700 hover:bg-purple-600 active:bg-purple-800 focus:bg-purple-800 focus:ring focus:ring-purple-300 text-white rounded-sm">Main Menu</button>
     </div>
   </div>
   )
