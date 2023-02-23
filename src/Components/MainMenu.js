@@ -1,12 +1,13 @@
 import { React, useContext } from "react";
 import { QuizContext } from "../Helpers/Contexts";
+//Import banks of questions in this component to import them into the Quiz component.
 import { JSQuestions } from "../Helpers/JSQuestionsBank";
 import { ReactQuestions } from "../Helpers/ReactQuestionsBank";
 
 function MainMenu() {
   //Destructuring gamestate and set gamestate from state in Context. This is shared across multiple components.
   const { setGameState } = useContext(QuizContext);
-  const {setQuestionsBank} = useContext(QuizContext);
+  const { setQuestionsBank } = useContext(QuizContext);
 
   return (
     <>
@@ -20,7 +21,7 @@ function MainMenu() {
               setGameState("quiz");
               setQuestionsBank(JSQuestions);
             }}
-            className="p-2 m-1 bg-purple-700 hover:bg-purple-600 active:bg-purple-800 focus:bg-purple-800 focus:ring focus:ring-purple-300 text-white rounded-sm"
+            className="primary-btn"
           >
             JS Quiz
           </button>
@@ -29,7 +30,7 @@ function MainMenu() {
               setGameState("quiz");
               setQuestionsBank(ReactQuestions);
             }}
-            className="p-2 m-1 bg-purple-700 hover:bg-purple-600 active:bg-purple-800 focus:bg-purple-800 focus:ring focus:ring-purple-300 text-white rounded-sm"
+            className="primary-btn"
           >
             React Quiz
           </button>

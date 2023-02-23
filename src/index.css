@@ -2,16 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* This is a way to abstract away reusable styles for components in Tailwind. */
+@layer components {
+  /* Main Menu Component */
+  .primary-btn {
+    @apply p-2 m-1 bg-purple-700 hover:bg-purple-600 active:bg-purple-800 focus:bg-purple-800 focus:ring focus:ring-purple-300 text-white rounded-sm;
+  }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  /* Quiz Component */
+  .Quiz--option {
+    @apply bg-purple-400 hover:bg-purple-600 active:bg-purple-700 focus:bg-purple-600 focus:ring focus:ring-purple-300 m-2 p-2 rounded-md;
+  }
+  .Quiz--submit-btn {
+    @apply p-3 mt-6 mx-auto bg-purple-700 hover:bg-purple-600 active:bg-purple-800 focus:bg-purple-800 focus:ring focus:ring-purple-300 text-white rounded-sm;
+  }
+
 }

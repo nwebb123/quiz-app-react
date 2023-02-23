@@ -1,20 +1,20 @@
 import { React, useState, useContext } from "react";
 import { QuizContext } from "../Helpers/Contexts";
-// import { JSQuestions } from "../Helpers/JSQuestionsBank";
-// import { ReactQuestions } from "../Helpers/ReactQuestionsBank";
 
 function Quiz() {
-  //Destructuring gamestate and set gamestate function from Quiz context.
+  // Destructuring setGamestate, setScore, and questionsBank/setQuestionsBank 
+  // state from Quiz context since these values were set or initialized in Main Menu component.
   const { setGameState } = useContext(QuizContext);
   const { setScore } = useContext(QuizContext);
   const { questionsBank, setQuestionsBank } = useContext(QuizContext);
 
-  //Initial state for Quiz component;
+  //Initial state for Quiz component; These states help determine how the quiz should function/display.
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [optionChosen, setOptionChosen] = useState("");
   const [questionAnswered, setQuestionAnswered] = useState(false);
   const [isLastQuestion, setIsLastQuestion] = useState(false);
 
+  //This onClick function is added to each option to
   const selectOption = (option) => {
     setOptionChosen(option);
     setQuestionAnswered(true);
@@ -24,17 +24,18 @@ function Quiz() {
     }
   };
 
+  //Console.log statements in this function act as a way to inform the user whether or not a submitted question is correct/incorrect.
+  //In the future I might want to output this to the results component to inform user which questions they got wrong/right.
   const submitOption = () => {
     if (questionsBank[currentQuestion].answer === optionChosen) {
-      //Cool feature would be to change background color of correct option to light-green and incorrect option to light-red.
       console.log(`Question ${currentQuestion + 1}: Correct`);
       setScore((prevScore) => prevScore + 1);
     } else {
-      //Change background color to red for all options that don't meet first condition.
       console.log(`Question ${currentQuestion + 1}: Incorrect`);
     }
   };
 
+  //This needs to be abstracted into a reusable component since it's used here and the results component.
   const resetQuiz = () => {
     setScore(0);
     setGameState("menu");
@@ -47,28 +48,29 @@ function Quiz() {
         onClick={() => {
           resetQuiz();
         }}
-        className="p-1 m-1 mx-auto bg-red-500 hover:bg-red-600 active:bg-red-800 focus:bg-red-800 focus:ring focus:ring-red-300 border border-black text-white rounded-sm"
+        className="p-2 m-1 mx-auto bg-red-500 hover:bg-red-600 active:bg-red-800 focus:bg-red-800 focus:ring focus:ring-red-300 border border-black text-white rounded-sm"
       >
         Main Menu
       </button>
 
-      <div className="Quiz m-3 flex-col">
+      <div className="m-3 flex-col">
         <div className="py-10 mx-auto max-w-3xl justify-center bg-purple-500 rounded-xl">
           <h1 className="text-white text-xl text-center">
             {questionsBank[currentQuestion].question}
           </h1>
           <br />
-          <div className="options p-3 flex flex-col text-white text-start">
+          
+          <div className="p-3 flex flex-col text-white text-start">
             {/* Option A */}
             <button
-              className="bg-purple-400 hover:bg-purple-600 active:bg-purple-700 focus:bg-purple-600 focus:ring focus:ring-purple-300 m-2 p-2 rounded-md"
+              className="Quiz--option"
               onClick={() => selectOption("optionA")}
             >
               A) {questionsBank[currentQuestion].optionA}
             </button>
             {/* Option B */}
             <button
-              className="bg-purple-400 hover:bg-purple-600 active:bg-purple-700 focus:bg-purple-600 focus:ring focus:ring-purple-300 m-2 p-2 rounded-md"
+              className="Quiz--option"
               onClick={() => selectOption("optionB")}
             >
               B) {questionsBank[currentQuestion].optionB}
@@ -77,34 +79,21 @@ function Quiz() {
             {/* If question is not a mult. choice question, do not display options C & D */}
             {questionsBank[currentQuestion].isMultChoice && (
               <>
-              {/* Option C */}
+                {/* Option C */}
                 <button
-                  className="bg-purple-400 hover:bg-purple-600 active:bg-purple-700 focus:bg-purple-600 focus:ring focus:ring-purple-300 m-2 p-2 rounded-md"
+                  className="Quiz--option"
                   onClick={() => selectOption("optionC")}
                 >
                   C) {questionsBank[currentQuestion].optionC}
                 </button>
                 {/* Option D */}
                 <button
-                  className="bg-purple-400 hover:bg-purple-600 active:bg-purple-700 focus:bg-purple-600 focus:ring focus:ring-purple-300 m-2 p-2 rounded-md"
+                  className="Quiz--option"
                   onClick={() => selectOption("optionD")}
                 >
                   D) {questionsBank[currentQuestion].optionD}
                 </button>
               </>
-            )}
-
-            {/* See Reults button render */}
-            {questionAnswered && isLastQuestion && (
-              <button
-                onClick={() => {
-                  submitOption();
-                  setGameState("results");
-                }}
-                className="p-3 mt-6 mx-auto  bg-purple-700 hover:bg-purple-600 active:bg-purple-800 focus:bg-purple-800 focus:ring focus:ring-purple-300 text-white rounded-sm"
-              >
-                See Results
-              </button>
             )}
 
             {/* Next Question button render */}
@@ -118,11 +107,25 @@ function Quiz() {
                     return prevCurrentQuestion + 1;
                   });
                 }}
-                className="p-3 mt-6 mx-auto text-white rounded-sm bg-purple-700  hover:bg-purple-600 active:bg-purple-800 focus:bg-purple-800 focus:ring focus:ring-purple-300 m-2"
+                className="Quiz--submit-btn"
               >
                 Next Question
               </button>
             )}
+
+            {/* See Reults button render */}
+            {questionAnswered && isLastQuestion && (
+              <button
+                onClick={() => {
+                  submitOption();
+                  setGameState("results");
+                }}
+                className="Quiz--submit-btn"
+              >
+                See Results
+              </button>
+            )}
+
           </div>
         </div>
       </div>
